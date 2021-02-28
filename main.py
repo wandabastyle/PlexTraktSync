@@ -2,7 +2,8 @@
 import plexapi.server
 from os import getenv, path
 import trakt
-trakt.core.CONFIG_PATH = path.join(path.dirname(path.abspath(__file__)), ".pytrakt.json")
+from plex_trakt_sync.path import pytrakt_file, env_file
+trakt.core.CONFIG_PATH = pytrakt_file
 import trakt.movies
 import trakt.tv
 import trakt.sync
@@ -22,7 +23,6 @@ from config import CONFIG
 import requests_cache
 
 requests_cache.install_cache('trakt_cache')
-env_file = path.join(path.dirname(path.abspath(__file__)), ".env")
 
 def process_movie_section(s, watched_set, ratings_dict, listutil, collection):
     # args: a section of plex movies, a set comprised of the trakt ids of all watched movies and a dict with key=slug and value=rating (1-10)
