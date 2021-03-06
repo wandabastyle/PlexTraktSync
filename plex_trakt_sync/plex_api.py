@@ -1,6 +1,7 @@
 from plex_trakt_sync.memoize import Memoize as memoize
 from plex_trakt_sync.requests_cache import CacheDisabledDecorator as nocache
 from plex_trakt_sync.main import get_plex_server
+from plex_trakt_sync.config import CONFIG
 
 
 class PlexApi:
@@ -18,4 +19,10 @@ class PlexApi:
     @memoize
     @nocache
     def library_sections(self):
-        return self.plex_server.library.sections()
+        result = []
+        for section in self.plex_server.library.sections():
+            if section.title in CONFIG["excluded-libraries"]:
+                continue
+            result.append(section)
+
+        return result
