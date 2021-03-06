@@ -68,3 +68,9 @@ class TraktApi:
         return list(
             map(lambda m: m.trakt, self.me.watchlist_movies)
         )
+
+    @property
+    @memoize
+    @nocache
+    def movie_ratings(self):
+        return self.me.get_ratings(media_type='movies')
