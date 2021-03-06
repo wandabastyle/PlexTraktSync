@@ -13,7 +13,6 @@ import datetime
 from json.decoder import JSONDecodeError
 
 from plex_trakt_sync import pytrakt_extensions
-from plex_trakt_sync.trakt_list_util import TraktListUtil
 from plex_trakt_sync.config import CONFIG
 from plex_trakt_sync.logging import logging
 from plex_trakt_sync.requests_cache import requests_cache
