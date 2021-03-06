@@ -13,3 +13,9 @@ class PlexApi:
     @nocache
     def plex_server(self):
         return get_plex_server()
+
+    @property
+    @memoize
+    @nocache
+    def library_sections(self):
+        return self.plex_server.library.sections()
