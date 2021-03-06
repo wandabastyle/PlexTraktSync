@@ -1,8 +1,8 @@
 
 import plexapi.server
-from os import getenv, path
+from os import getenv
 import trakt
-from plex_trakt_sync.path import pytrakt_file, env_file
+from plex_trakt_sync.path import pytrakt_file, env_file, log_file
 trakt.core.CONFIG_PATH = pytrakt_file
 import trakt.movies
 import trakt.tv
@@ -320,9 +320,8 @@ def main():
         get_env_data()
         load_dotenv()
     logLevel = logging.DEBUG if CONFIG['log_debug_messages'] else logging.INFO
-    logfile = path.join(path.dirname(path.abspath(__file__)), "last_update.log")
     logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s',
-                        handlers=[logging.FileHandler(logfile, 'w', 'utf-8')],
+                        handlers=[logging.FileHandler(log_file, 'w', 'utf-8')],
                         level=logLevel)
     listutil = TraktListUtil()
     # do not use the cache for account specific stuff as this is subject to change
