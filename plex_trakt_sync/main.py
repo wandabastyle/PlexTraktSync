@@ -8,7 +8,6 @@ import trakt.tv
 import trakt.sync
 import trakt.users
 import trakt.core
-import logging
 from time import time
 import datetime
 from json.decoder import JSONDecodeError
@@ -16,6 +15,7 @@ from json.decoder import JSONDecodeError
 from plex_trakt_sync import pytrakt_extensions
 from plex_trakt_sync.trakt_list_util import TraktListUtil
 from plex_trakt_sync.config import CONFIG
+from plex_trakt_sync.logging import logging
 
 import requests_cache
 
@@ -311,10 +311,6 @@ def get_plex_server():
 def main():
 
     start_time = time()
-    logLevel = logging.DEBUG if CONFIG['log_debug_messages'] else logging.INFO
-    logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s',
-                        handlers=[logging.FileHandler(log_file, 'w', 'utf-8')],
-                        level=logLevel)
     listutil = TraktListUtil()
     # do not use the cache for account specific stuff as this is subject to change
     start_msg = "Starting sync Plex {} and Trakt {}".format(CONFIG['PLEX_USERNAME'], CONFIG['TRAKT_USERNAME'])
