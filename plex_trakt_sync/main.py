@@ -16,10 +16,8 @@ from plex_trakt_sync import pytrakt_extensions
 from plex_trakt_sync.trakt_list_util import TraktListUtil
 from plex_trakt_sync.config import CONFIG
 from plex_trakt_sync.logging import logging
+from plex_trakt_sync.requests_cache import requests_cache
 
-import requests_cache
-
-requests_cache.install_cache('trakt_cache')
 
 def process_movie_section(s, watched_set, ratings_dict, listutil, collection):
     # args: a section of plex movies, a set comprised of the trakt ids of all watched movies and a dict with key=slug and value=rating (1-10)
