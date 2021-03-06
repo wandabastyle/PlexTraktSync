@@ -5,9 +5,9 @@ trakt.core.CONFIG_PATH = pytrakt_file
 import trakt.users
 from trakt.errors import OAuthException, ForbiddenException
 
-from plex_trakt_sync.requests_cache import requests_cache
 from plex_trakt_sync.logging import logging
 from plex_trakt_sync.memoize import Memoize as memoize
+from plex_trakt_sync.requests_cache import CacheDisabledDecorator as nocache
 
 
 class TraktApi:
@@ -17,10 +17,10 @@ class TraktApi:
 
     @property
     @memoize
+    @nocache
     def me(self):
-        with requests_cache.disabled():
-            try:
-                return trakt.users.User('me')
-            except (OAuthException, ForbiddenException) as e:
-                logging.fatal("Trakt authentication error: {}".format(str(e)))
-                raise e
+        try:
+            return trakt.users.User('me')
+        except (OAuthException, ForbiddenException) as e:
+            logging.fatal("Trakt authentication error: {}".format(str(e)))
+            raise e
