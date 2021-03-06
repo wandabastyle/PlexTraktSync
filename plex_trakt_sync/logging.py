@@ -1,7 +1,19 @@
+from contextlib import contextmanager
 import logging
 import sys
 from .config import CONFIG
 from .path import log_file
+from time import time
+
+
+@contextmanager
+def measure_time(message, level=logging.INFO):
+    start = time()
+    yield
+    timedelta = time() - start
+
+    m, s = divmod(timedelta, 60)
+    logging.log(level, message + " in " + (m > 0) * "{:.0f} min ".format(m) + (s > 0) * "{:.1f} seconds".format(s))
 
 
 def initialize():
