@@ -1,3 +1,4 @@
+from plexapi.library import MovieSection, ShowSection
 from plex_trakt_sync.memoize import Memoize as memoize
 from plex_trakt_sync.requests_cache import CacheDisabledDecorator as nocache
 from plex_trakt_sync.main import get_plex_server
@@ -26,3 +27,11 @@ class PlexApi:
             result.append(section)
 
         return result
+
+    @staticmethod
+    def is_movie(section):
+        return type(section) is MovieSection
+
+    @staticmethod
+    def is_show(section):
+        return type(section) is ShowSection
