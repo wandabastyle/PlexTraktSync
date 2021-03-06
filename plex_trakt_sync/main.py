@@ -1,7 +1,7 @@
 
 import plexapi.server
 import trakt
-from plex_trakt_sync.path import pytrakt_file, env_file, log_file
+from plex_trakt_sync.path import pytrakt_file, env_file
 trakt.core.CONFIG_PATH = pytrakt_file
 import trakt.movies
 import trakt.tv
