@@ -204,11 +204,11 @@ def process_show_section(s, watched_set, listutil):
             x = guid.split('//')[1]
             x = x.split('?')[0]
             provider = 'imdb'
-        elif 'thetvdb' in guid:
+        elif 'thetvdb' in guid or 'tvdb' in guid:
             x = guid.split('//')[1]
             x = x.split('?')[0]
             provider = 'tvdb'
-        elif 'themoviedb' in guid:
+        elif 'themoviedb' in guid or 'tmdb' in guid:
             x = guid.split('//')[1]
             x = x.split('?')[0]
             provider = 'tmdb'
