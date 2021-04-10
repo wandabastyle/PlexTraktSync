@@ -3,5 +3,6 @@
 /.pytrakt.json
 /.vscode/
 /last_update.log
+/plex_trakt_sync/last_update.log
 /trakt_cache.sqlite
 __pycache__/
